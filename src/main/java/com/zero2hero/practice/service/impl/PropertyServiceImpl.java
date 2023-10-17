@@ -23,8 +23,7 @@ public class PropertyServiceImpl implements IPropertyService {
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
         PropertyEntity propertyEntity = propertyConverter.convertDTOtoEntity(propertyDTO);
         propertyEntity = propertyRepository.save(propertyEntity);
-        PropertyDTO dto = propertyConverter.convertEntityToDTO(propertyEntity);
-        return dto;
+        return propertyConverter.convertEntityToDTO(propertyEntity);
     }
     @Override
     public List<PropertyDTO> getAllProperties(){
@@ -43,8 +42,6 @@ public class PropertyServiceImpl implements IPropertyService {
             PropertyEntity pe = propertyEntity.get();
             pe.setTitle(propertyDTO.getTitle());
             pe.setAddress(propertyDTO.getAddress());
-            pe.setOwnerEmail(propertyDTO.getOwnerEmail());
-            pe.setOwnerName(propertyDTO.getOwnerName());
             pe.setPrice(propertyDTO.getPrice());
             pe.setDescription(propertyDTO.getDescription());
             propertyRepository.save(pe);
